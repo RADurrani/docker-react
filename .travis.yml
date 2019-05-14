@@ -8,4 +8,15 @@ before_install:
 script:
     - docker run rizwan/docker-react npm run test -- --coverage
     
-    
+deploy:
+    provider: elasticbeanstalk
+    region: "eu-west-2"
+    app: "docker-react-demo"
+    env: "DockerReactDemo-env"
+    bucket_name: "elasticbeanstalk-eu-west-2-993188536919"
+    bucket_path: "docker-react-demo"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: 
+        secure: "$AWS_SECRET_KEY"
